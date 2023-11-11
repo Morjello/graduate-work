@@ -1,0 +1,70 @@
+import React, { useState } from 'react';
+import DivisionForm from '../../DivisionForm/DivisionForm';
+import '../../DivisionForm/DivisionForm.sass';
+import division from '../../func/division';
+
+const KoeffOfZaryajaniya = ({ lengthOfSpur, lengthOfZar }) => {
+  const [koeffOfZaryajaniya, setKoeffOfZaryajaniya] = useState({
+    lengthZar: '',
+    lengthSpur: '',
+  });
+  const [koeffOfZaryajaniyaResult, setKoeffOfZaryajaniyaResult] = useState('');
+  const [koeff, setKoef] = useState('');
+
+  const handleInputChange = (e) => {
+    const target = e.target;
+    const name = target.name;
+    const value = target.value;
+
+    setKoeffOfZaryajaniya({ ...koeffOfZaryajaniya, [name]: value });
+  };
+
+  const calcKoeffOfZaryajaniya = () => {
+    return division(
+      koeffOfZaryajaniya.lengthZar,
+      koeffOfZaryajaniya.lengthSpur
+    );
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    setKoeffOfZaryajaniyaResult(calcKoeffOfZaryajaniya());
+  };
+
+  return (
+    <DivisionForm
+      id="15"
+      title="Определение коэффициента заряжания шпуров"
+      name="koeffOfZaryajaniya"
+      onSubmit={handleSubmitForm}
+      result={koeffOfZaryajaniyaResult}
+    >
+      <div className="division-label">
+        <h3 className="division-text">Длина заряда, см</h3>
+        <input
+          value={koeffOfZaryajaniya.lengthZar}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="lengthZar"
+          name="lengthZar"
+          required
+        />
+      </div>
+      <div className="division-label">
+        <h3 className="division-text">Длина шпура, см</h3>
+        <input
+          value={koeffOfZaryajaniya.lengthSpur}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="lengthSpur"
+          name="lengthSpur"
+          maxLength="200"
+          required
+        />
+      </div>
+    </DivisionForm>
+  );
+};
+export default KoeffOfZaryajaniya;
