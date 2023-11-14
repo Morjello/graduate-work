@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const QuantityOfSpurs = () => {
+const QuantityOfSpurs = ({ setQuantityOfSpursRes }) => {
   const [quantityOfSpurs, setQuantityOfSpurs] = useState({
     q: '',
     S: '',
@@ -28,6 +28,7 @@ const QuantityOfSpurs = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setQuantityOfSpursResult(calcDepthOfSpurs(quantityOfSpurs));
+    setQuantityOfSpursRes(calcDepthOfSpurs(quantityOfSpurs));
   };
 
   return (

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
+const LengthOfSpurs = ({ setLengthOfSpur }) => {
   const [lengthOfSpurs, setLengthOfSpurs] = useState({
     Length: '',
     tp: '',
     Vnorm: '',
     Nsm: '',
     Nz: '',
-    kish: '',
+    kishOfLength: '',
   });
   const [lengthOfSpursResult, setLengthOfZaryadResult] = useState('');
 
@@ -27,7 +27,7 @@ const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
         lengthOfSpurs.Vnorm *
         lengthOfSpurs.Nsm *
         lengthOfSpurs.Nz *
-        lengthOfSpurs.kish)
+        lengthOfSpurs.kishOfLength)
     );
   };
 
@@ -35,6 +35,7 @@ const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
     e.preventDefault();
     setLengthOfZaryadResult(calcLengthOfSpurs());
     setLengthOfSpur(calcLengthOfSpurs());
+    console.log(calcLengthOfSpurs());
   };
 
   return (
@@ -115,12 +116,12 @@ const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
         <div className="division-label">
           <h3 className="division-text">Коэффицент использования шпура</h3>
           <input
-            value={kishResultForLength ?? lengthOfSpurs.kish}
+            value={lengthOfSpurs.kishOfLength}
             onChange={handleInputChange}
             type="text"
             className="division-input"
-            id="kish"
-            name="kish"
+            id="kishOfLength"
+            name="kishOfLength"
             maxLength="200"
             required
           />

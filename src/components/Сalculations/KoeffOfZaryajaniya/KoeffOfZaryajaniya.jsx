@@ -3,13 +3,16 @@ import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 import division from '../../func/division';
 
-const KoeffOfZaryajaniya = ({ lengthOfSpur, lengthOfZar }) => {
+const KoeffOfZaryajaniya = ({
+  lengthOfSpur,
+  lengthOfZar,
+  setKoeffOfZarForRes,
+}) => {
   const [koeffOfZaryajaniya, setKoeffOfZaryajaniya] = useState({
     lengthZar: '',
     lengthSpur: '',
   });
   const [koeffOfZaryajaniyaResult, setKoeffOfZaryajaniyaResult] = useState('');
-  const [koeff, setKoef] = useState('');
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -29,6 +32,7 @@ const KoeffOfZaryajaniya = ({ lengthOfSpur, lengthOfZar }) => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setKoeffOfZaryajaniyaResult(calcKoeffOfZaryajaniya());
+    setKoeffOfZarForRes(calcKoeffOfZaryajaniya());
   };
 
   return (

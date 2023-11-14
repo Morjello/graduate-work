@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const DepthOfSpurs = () => {
+const DepthOfSpurs = ({ setdepthOfSpursRes }) => {
   const [depthOfSpurs, setDepthOfSpurs] = useState({
     speed: '',
     time: '',
@@ -28,6 +28,7 @@ const DepthOfSpurs = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setDepthOfSpursResult(calcDepthOfSpurs(depthOfSpurs));
+    setdepthOfSpursRes(calcDepthOfSpurs(depthOfSpurs));
   };
 
   return (

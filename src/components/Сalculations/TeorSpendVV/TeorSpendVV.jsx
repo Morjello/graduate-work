@@ -21,7 +21,7 @@ const TeorSpendVV = () => {
   return (
     <DivisionForm
       id="6"
-      title="Расход ВВ на взрыв"
+      title="Теоретический расход ВВ на взрыв"
       name="spendVV"
       onSubmit={handleSubmitForm}
       result={spendVVResult}

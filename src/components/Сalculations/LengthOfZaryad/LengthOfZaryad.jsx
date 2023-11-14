@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import division from '../../func/division';
 
-const LengthOfZaryad = ({ zaryadInSpurs, setLengthOfZar }) => {
+const LengthOfZaryad = ({
+  zaryadInSpurs,
+  setLengthOfZar,
+  setLengthOfAllSpurs,
+}) => {
   const [lengthOfZaryad, setLengthOfZaryad] = useState({
     pressure: '',
     radius: '',
@@ -11,11 +15,6 @@ const LengthOfZaryad = ({ zaryadInSpurs, setLengthOfZar }) => {
     kontur: '',
   });
   const [lengthOfZaryadResult, setLengthOfZaryadResult] = useState('');
-  const [lengthOfAllSpurs, setLengthOfAllSpurs] = useState({
-    vrub: '',
-    okont: '',
-    kontur: '',
-  });
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -50,97 +49,78 @@ const LengthOfZaryad = ({ zaryadInSpurs, setLengthOfZar }) => {
   };
 
   return (
-    <>
-      <DivisionForm
-        id="12"
-        title="Определение длины зарядов"
-        name="lengthOfZaryad"
-        onSubmit={handleSubmitForm}
-        result={lengthOfZaryadResult}
-      >
-        <div className="division-label">
-          <h3 className="division-text">Плотность ВВ в патроне, г/см3</h3>
-          <input
-            value={lengthOfZaryad.pressure}
-            onChange={handleInputChange}
-            type="text"
-            className="division-input"
-            id="pressure"
-            name="pressure"
-            required
-          />
-        </div>
-        <div className="division-label">
-          <h3 className="division-text">Радиус патрона, см</h3>
-          <input
-            value={lengthOfZaryad.radius}
-            onChange={handleInputChange}
-            type="text"
-            className="division-input"
-            id="radius"
-            name="radius"
-            maxLength="200"
-            required
-          />
-        </div>
-
-        <div className="division-label">
-          <h3 className="division-text">
-            Величина заряда во врубовых шпурах, г
-          </h3>
-          <input
-            value={zaryadInSpurs.vrub ?? lengthOfZaryad.vrub}
-            onChange={handleInputChange}
-            type="text"
-            className="division-input"
-            id="vrub"
-            name="vrub"
-            required
-          />
-        </div>
-        <div className="division-label">
-          <h3 className="division-text">Величина заряда в отбойных шпуре, г</h3>
-          <input
-            value={zaryadInSpurs.okont ?? lengthOfZaryad.okont}
-            onChange={handleInputChange}
-            type="text"
-            className="division-input"
-            id="okont"
-            name="okont"
-            maxLength="200"
-            required
-          />
-        </div>
-        <div className="division-label">
-          <h3 className="division-text">
-            Величина заряда в контурных шпурах, г
-          </h3>
-          <input
-            value={zaryadInSpurs.kontur ?? lengthOfZaryad.kontur}
-            onChange={handleInputChange}
-            type="text"
-            className="division-input"
-            id="kontur"
-            name="kontur"
-            maxLength="200"
-            required
-          />
-        </div>
-      </DivisionForm>
-
-      <div className="division">
-        <h3 className="division-text">Длина заряда в шпурах</h3>
-        <p className="division-text">
-          Во врубовых: {lengthOfAllSpurs.vrub}, см
-        </p>
-        <p className="division-text">
-          В отбойных: {lengthOfAllSpurs.okont}, см
-        </p>
-        <p className="division-text">
-          В контурных: {lengthOfAllSpurs.kontur}, см
-        </p>
+    <DivisionForm
+      id="12"
+      title="Определение длины зарядов"
+      name="lengthOfZaryad"
+      onSubmit={handleSubmitForm}
+      result={lengthOfZaryadResult}
+    >
+      <div className="division-label">
+        <h3 className="division-text">Плотность ВВ в патроне, г/см3</h3>
+        <input
+          value={lengthOfZaryad.pressure}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="pressure"
+          name="pressure"
+          required
+        />
       </div>
-    </>
+      <div className="division-label">
+        <h3 className="division-text">Радиус патрона, см</h3>
+        <input
+          value={lengthOfZaryad.radius}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="radius"
+          name="radius"
+          maxLength="200"
+          required
+        />
+      </div>
+
+      <div className="division-label">
+        <h3 className="division-text">Величина заряда во врубовых шпурах, г</h3>
+        <input
+          value={zaryadInSpurs.vrub ?? lengthOfZaryad.vrub}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="vrub"
+          name="vrub"
+          required
+        />
+      </div>
+      <div className="division-label">
+        <h3 className="division-text">Величина заряда в отбойных шпуре, г</h3>
+        <input
+          value={zaryadInSpurs.okont ?? lengthOfZaryad.okont}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="okont"
+          name="okont"
+          maxLength="200"
+          required
+        />
+      </div>
+      <div className="division-label">
+        <h3 className="division-text">Величина заряда в контурных шпурах, г</h3>
+        <input
+          value={zaryadInSpurs.kontur ?? lengthOfZaryad.kontur}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="kontur"
+          name="kontur"
+          maxLength="200"
+          required
+        />
+      </div>
+    </DivisionForm>
   );
 };
 export default LengthOfZaryad;

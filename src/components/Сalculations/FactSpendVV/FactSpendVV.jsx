@@ -3,7 +3,7 @@ import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 import division from '../../func/division';
 
-const FactSpendVV = () => {
+const FactSpendVV = ({ setFactSpendVVForRes }) => {
   const [factSpendVV, setFactSpendVV] = useState({
     qvr: '',
     Nvr: '',
@@ -29,6 +29,7 @@ const FactSpendVV = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setFactSpendVVResult(calcFactSpendVV());
+    setFactSpendVVForRes(calcFactSpendVV());
   };
 
   return (

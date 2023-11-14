@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const SpecificVV = () => {
+const SpecificVV = ({ setSpecificVVRes }) => {
   const [specificVV, setSpecificVV] = useState({
     q1: '',
     f0: '',
@@ -26,6 +26,7 @@ const SpecificVV = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setSpecificVVResult(calcSpecificVV(specificVV));
+    setSpecificVVRes(calcSpecificVV(specificVV));
   };
 
   return (
@@ -36,7 +37,7 @@ const SpecificVV = () => {
       onSubmit={handleSubmitForm}
       result={specificVVResult}
     >
-      <div className="division-lavel">
+      <div className="division-label">
         <h3 className="division-text">Удельный расход, кг/м3</h3>
         <input
           value={specificVV.q1}
@@ -48,7 +49,7 @@ const SpecificVV = () => {
           required
         />
       </div>
-      <div className="division-lavel">
+      <div className="division-label">
         <h3 className="division-text">Коэффицент крепости пород</h3>
         <input
           value={specificVV.f0}
@@ -61,7 +62,7 @@ const SpecificVV = () => {
           required
         />
       </div>
-      <div className="division-lavel">
+      <div className="division-label">
         <h3 className="division-text">Коэффициент зажима</h3>
         <input
           value={specificVV.v}
@@ -74,7 +75,7 @@ const SpecificVV = () => {
           required
         />
       </div>
-      <div className="division-lavel">
+      <div className="division-label">
         <h3 className="division-text">Коэффицент работоспособности ВВ</h3>
         <input
           value={specificVV.e}

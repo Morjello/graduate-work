@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import division from '../../func/division';
 
-const Kzsh = () => {
+const Kzsh = ({ setKzsh }) => {
   const [kzshData, setKzshData] = useState({ length1: '', length2: '' });
   const [kzshResult, setKzshResult] = useState('');
 
@@ -17,12 +17,13 @@ const Kzsh = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setKzshResult(division(kzshData.length1, kzshData.length2));
+    setKzsh(division(kzshData.length1, kzshData.length2));
   };
 
   return (
     <DivisionForm
       id="3"
-      title="Коэффицент заряжания шпуров (КЗШ)"
+      title="Коэффициент заряжания шпуров (КЗШ)"
       name="kzsh"
       onSubmit={handleSubmitForm}
       result={kzshResult}

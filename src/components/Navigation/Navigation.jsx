@@ -4,7 +4,11 @@ import { Link, useLocation } from 'react-router-dom';
 const Navigation = () => {
   const location = useLocation();
   return (
-    <nav className="navigation">
+    <nav
+      className={`navigation ${
+        location.pathname === '/calc-of-bvr' && 'navigation--only'
+      }`}
+    >
       <ul className="navigation-list">
         <li
           className={`navigation-cell ${
@@ -69,7 +73,7 @@ const Navigation = () => {
           }`}
         >
           <Link className="navigation-link" to="/calc-of-bvr/spend-vv">
-            Расход ВВ на взрыв
+            Теоретический расход ВВ на взрыв
           </Link>
         </li>
         <li
@@ -127,7 +131,7 @@ const Navigation = () => {
             className="navigation-link"
             to="/calc-of-bvr/koeff-of-zaryajaniya"
           >
-            Определение коэффициента заряжания шпуров
+            Коэффициент заряжания шпуров
           </Link>
         </li>
         <li

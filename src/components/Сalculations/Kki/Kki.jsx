@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import division from '../../func/division';
 
-const Kki = () => {
+const Kki = ({ setKki }) => {
   const [kkiData, setKkiData] = useState({ square1: '', square2: '' });
   const [kkiResult, setKkiResult] = useState('');
 
@@ -18,11 +18,12 @@ const Kki = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setKkiResult(division(kkiData.square1, kkiData.square2));
+    setKki(division(kkiData.square1, kkiData.square2));
   };
   return (
     <DivisionForm
       id="1"
-      title="Коэффицент излишка сечения (ККИ)"
+      title="Коэффициент излишка сечения (ККИ)"
       name="kki"
       onSubmit={handleSubmitForm}
       result={kkiResult}
