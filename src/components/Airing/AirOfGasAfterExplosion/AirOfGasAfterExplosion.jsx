@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const AirOfGasAfterExplosion = () => {
+const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
   const [airOfGas, setAirOfGas] = useState({
     Scv: '',
     T: '',
@@ -35,7 +35,7 @@ const AirOfGasAfterExplosion = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setAirOfGasResult(calcAirOfGas());
-    console.log(calcAirOfGas);
+    setAirOfGasForRes(calcAirOfGas());
   };
 
   return (

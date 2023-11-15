@@ -5,7 +5,6 @@ import Navigation from '../Navigation/Navigation';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import AllResults from '../AllResults/AllResults';
 import Main from '../Main/Main';
-import Airing from '../Airing/Airing';
 import { useState } from 'react';
 import Kish from '../Сalculations/Kish/Kish';
 import Kki from '../Сalculations/Kki/Kki';
@@ -23,10 +22,16 @@ import NavigationOfAiring from '../NavigationOfAiring/NavigationOfAiring';
 import AirOfGasAfterExplosion from '../Airing/AirOfGasAfterExplosion/AirOfGasAfterExplosion';
 import LeakOfAir from '../Airing/LeakOfAir/LeakOfAir';
 import AirForPeople from '../Airing/AirForPeople/AirForPeople';
+import Background from '../DivisionForm/Background/Background';
+import AiringOfMinSpeed from '../Airing/AiringOfMinSpeed/AiringOfMinSpeed';
+import PowerOfFan from '../Airing/PowerOfFan/PowerOfFan';
+import DepressionOfFlexiblePump from '../Airing/DepressionOfFlexiblePump/DepressionOfFlexiblePump';
+import DepressionOfHardPump from '../Airing/DepressionOfHardPump/DepressionOfHardPump';
 
 function App() {
   const location = useLocation();
 
+  // стейты БВР
   const [zaryadInSpurs, setZaryadInSpurs] = useState({});
   const [kishResultForLength, setKishResultForLength] = useState('');
   const [kki, setKki] = useState('');
@@ -51,6 +56,17 @@ function App() {
   const [koeffOfZarForRes, setKoeffOfZarForRes] = useState('');
   const [factSpendVVForRes, setFactSpendVVForRes] = useState('');
 
+  // стейты проветривания
+  const [airOfGasForRes, setAirOfGasForRes] = useState('');
+  const [leakOfAirForRes, setLeakOfAirForRes] = useState('');
+  const [airForPeopleForRes, setAirForPeopleForRes] = useState('');
+  const [airingOfMinSpeedForRes, setAiringOfMinSpeedForRes] = useState('');
+  const [powerOfFanForRes, setPowerOfFanForRes] = useState('');
+  const [depressionOfFlexiblePumpForRes, setDepressionOfFlexiblePumpForRes] =
+    useState('');
+  const [depressionOfHardPumpForRes, setDepressionOfHardPumpForRes] =
+    useState('');
+
   const navigationsOfBVRPaths = // маршруты для отображения подвала
     location.pathname === '/calc-of-bvr' ||
     location.pathname === '/calc-of-bvr/kish' ||
@@ -70,7 +86,11 @@ function App() {
     location.pathname === '/calc-of-airing' ||
     location.pathname === '/calc-of-airing/leak-of-air' ||
     location.pathname === '/calc-of-airing/air-for-people' ||
-    location.pathname === '/calc-of-airing/air-of-gas-after-explosion';
+    location.pathname === '/calc-of-airing/air-of-gas-after-explosion' ||
+    location.pathname === '/calc-of-airing/air-of-min-speed' ||
+    location.pathname === '/calc-of-airing/power-of-fan' ||
+    location.pathname === '/calc-of-airing/depression-of-flexible-pump' ||
+    location.pathname === '/calc-of-airing/depression-of-hard-pump';
 
   return (
     <>
@@ -80,6 +100,8 @@ function App() {
         {navigationPathsOfAiring && <NavigationOfAiring />}
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/calc-of-bvr" element={<Background />} />
+          <Route path="/calc-of-airing" element={<Background />} />
           <Route
             path="/calc-of-bvr/kish" // Начало параметров БВР
             element={<Kish setKishResultForLength={setKishResultForLength} />}
@@ -156,12 +178,49 @@ function App() {
           />
           <Route
             path="/calc-of-airing/air-of-gas-after-explosion" // Начало вентиляции
-            element={<AirOfGasAfterExplosion />}
+            element={
+              <AirOfGasAfterExplosion setAirOfGasForRes={setAirOfGasForRes} />
+            }
           />
-          <Route path="/calc-of-airing/leak-of-air" element={<LeakOfAir />} />
+          <Route
+            path="/calc-of-airing/leak-of-air"
+            element={<LeakOfAir setLeakOfAirForRes={setLeakOfAirForRes} />}
+          />
           <Route
             path="/calc-of-airing/air-for-people"
-            element={<AirForPeople />}
+            element={
+              <AirForPeople setAirForPeopleForRes={setAirForPeopleForRes} />
+            }
+          />
+          <Route
+            path="/calc-of-airing/air-of-min-speed"
+            element={
+              <AiringOfMinSpeed
+                setAiringOfMinSpeedForRes={setAiringOfMinSpeedForRes}
+              />
+            }
+          />
+          <Route
+            path="/calc-of-airing/power-of-fan"
+            element={<PowerOfFan setPowerOfFanForRes={setPowerOfFanForRes} />}
+          />
+          <Route
+            path="/calc-of-airing/depression-of-flexible-pump"
+            element={
+              <DepressionOfFlexiblePump
+                setDepressionOfFlexiblePumpForRes={
+                  setDepressionOfFlexiblePumpForRes
+                }
+              />
+            }
+          />
+          <Route
+            path="/calc-of-airing/depression-of-hard-pump"
+            element={
+              <DepressionOfHardPump
+                setDepressionOfHardPumpForRes={setDepressionOfHardPumpForRes}
+              />
+            }
           />
           <Route
             path="/all-calculations" // Результаты расчетов
@@ -180,6 +239,13 @@ function App() {
                 lengthOfSpur={lengthOfSpur}
                 koeffOfZarForRes={koeffOfZarForRes}
                 factSpendVVForRes={factSpendVVForRes}
+                airOfGasForRes={airOfGasForRes}
+                leakOfAirForRes={leakOfAirForRes}
+                airForPeopleForRes={airForPeopleForRes}
+                airingOfMinSpeedForRes={airingOfMinSpeedForRes}
+                powerOfFanForRes={powerOfFanForRes}
+                depressionOfFlexiblePumpForRes={depressionOfFlexiblePumpForRes}
+                depressionOfHardPumpForRes={depressionOfHardPumpForRes}
               />
             }
           />

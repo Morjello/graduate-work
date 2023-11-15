@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './DivisionForm.sass';
 
 const DivisionForm = ({ name, title, id, children, onSubmit, result }) => {
-  const [activeButton, setActiveButton] = useState(false);
+  // const [activeButton, setActiveButton] = useState(false);
   return (
     <div className="division">
       <div className="division-container">
@@ -12,7 +12,7 @@ const DivisionForm = ({ name, title, id, children, onSubmit, result }) => {
           <button
             className="division-button"
             type="submit"
-            disabled={activeButton}
+            // disabled={activeButton}
           >
             Рассчитать
           </button>

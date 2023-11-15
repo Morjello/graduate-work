@@ -14,13 +14,19 @@ const AllResults = ({
   lengthOfSpur,
   koeffOfZarForRes,
   factSpendVVForRes,
+  airOfGasForRes,
+  leakOfAirForRes,
+  airForPeopleForRes,
+  airingOfMinSpeedForRes,
+  powerOfFanForRes,
+  depressionOfFlexiblePumpForRes,
+  depressionOfHardPumpForRes,
 }) => {
   return (
     <section className="results">
-      {/* <h2 className="results-title">Таблица всех расчетов</h2> */}
       <table className="results-table">
         <caption className="results-caption">
-          Таблица 1 - Результаты всех расчетов
+          Таблица 1 - Результаты буровзрывных работ
         </caption>
         <tr className="results-cell">
           <th className="results-subtitle">Название</th>
@@ -101,6 +107,58 @@ const AllResults = ({
         <tr className="results-cell">
           <th className="results-text">Фактический расход ВВ на заходку:</th>
           <th className="results-text">{factSpendVVForRes}</th>
+        </tr>
+      </table>{' '}
+      <table className="results-table">
+        <caption className="results-caption">
+          Таблица 2 - Результаты вентиляции
+        </caption>
+        <tr className="results-cell">
+          <th className="results-subtitle">Название</th>
+          <th className="results-subtitle">Значение</th>
+        </tr>
+        <tr className="results-cell">
+          <th className="results-text">
+            Расход воздуха по газам, образующимся после взрывных работ:
+          </th>
+          <th className="results-text">{airOfGasForRes}</th>
+        </tr>
+        <tr className="results-cell">
+          <th className="results-text">
+            Коэффициент утечек воздуха для металлических трубопроводов:
+          </th>
+          <th className="results-text">{leakOfAirForRes}</th>
+        </tr>
+        <tr className="results-cell">
+          <th className="results-text">
+            Необходимое количество воздуха по наибольшему числу людей:
+          </th>
+          <th className="results-text">{airForPeopleForRes}</th>
+        </tr>
+        <tr className="results-cell">
+          <th className="results-text">
+            Количество воздуха по минимальной скорости движения воздуха:
+          </th>
+          <th className="results-text">{airingOfMinSpeedForRes}</th>
+        </tr>
+        <tr className="results-cell">
+          <th className="results-text">
+            Требуемая производительность (подача) вентилятора местного
+            проветривания:
+          </th>
+          <th className="results-text">{powerOfFanForRes}</th>
+        </tr>
+        <tr className="results-cell">
+          <th className="results-text">
+            Депрессия вентилятора для гибких трубопроводов:
+          </th>
+          <th className="results-text">{depressionOfFlexiblePumpForRes}</th>
+        </tr>
+        <tr className="results-cell">
+          <th className="results-text">
+            Депрессия вентилятора для жестких трубопроводов:
+          </th>
+          <th className="results-text">{depressionOfHardPumpForRes}</th>
         </tr>
       </table>
     </section>

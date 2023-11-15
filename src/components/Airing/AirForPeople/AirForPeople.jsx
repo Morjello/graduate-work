@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const AirForPeople = () => {
+const AirForPeople = ({ setAirForPeopleForRes }) => {
   const [airForPeople, setAirForPeople] = useState({
     n: '',
   });
@@ -23,18 +23,19 @@ const AirForPeople = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setAirForPeopleResult(calcAirForPeople());
+    setAirForPeopleForRes(calcAirForPeople());
   };
 
   return (
     <DivisionForm
       id="20"
-      title="Расчет необходимого количества воздуха по наибольшему числу людей"
+      title="Необходимое количество воздуха по наибольшему числу людей"
       name="airForPeople"
       onSubmit={handleSubmitForm}
       result={airForPeopleResult}
     >
       <div className="division-label">
-        <h3 className="division-text">n -наибольшее количество людей</h3>
+        <h3 className="division-text">n - наибольшее количество людей</h3>
         <input
           value={airForPeople.n}
           onChange={handleInputChange}

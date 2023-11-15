@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const LeakOfAir = () => {
+const LeakOfAir = ({ setLeakOfAirForRes }) => {
   const [leakOfAir, setLeakOfAir] = useState({
     Kyd: '',
     dtr: '',
@@ -38,6 +38,7 @@ const LeakOfAir = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setLeakOfAirResult(calcLeakOfAir());
+    setLeakOfAirForRes(calcLeakOfAir());
   };
 
   return (

@@ -61,6 +61,10 @@ const Header = () => {
           Результаты расчетов
         </Link>
       </div>
+      <div className="header-account">
+        <p className="header-account-link">Вход</p>
+        <p className="header-account-link">Регистрация</p>
+      </div>
     </header>
   );
 };

@@ -4,148 +4,140 @@ import { Link, useLocation } from 'react-router-dom';
 const Navigation = () => {
   const location = useLocation();
   return (
-    <nav
-      className={`navigation ${
-        location.pathname === '/calc-of-bvr' && 'navigation--only'
-      }`}
-    >
-      <ul className="navigation-list">
-        <li
+    <nav className="navigation">
+      <div className="navigation-list">
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/kish'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/kish"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/kish">
-            Коэффициент использования шпуров
-          </Link>
-        </li>
-        <li
+          Коэффициент использования шпуров
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/kki'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/kki"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/kki">
-            Коэффициент излишка сечения
-          </Link>
-        </li>
-        <li
+          Коэффициент излишка сечения
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/kzsh'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/kzsh"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/kzsh">
-            Коэффициент заряжания шпуров
-          </Link>
-        </li>
-        <li
+          Коэффициент заряжания шпуров
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/depth-of-spurs'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/depth-of-spurs"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/depth-of-spurs">
-            Определение глубины шпуров
-          </Link>
-        </li>
-        <li
+          Определение глубины шпуров
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/specific-vv'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/specific-vv"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/specific-vv">
-            Определение удельного расхода ВВ
-          </Link>
-        </li>
-        <li
+          Определение удельного расхода ВВ
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/spend-vv'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/spend-vv"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/spend-vv">
-            Теоретический расход ВВ на взрыв
-          </Link>
-        </li>
-        <li
+          Теоретический расход ВВ на взрыв
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/quantity-of-spurs'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/quantity-of-spurs"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/quantity-of-spurs">
-            Определение количества шпуров
-          </Link>
-        </li>
-        <li
+          Определение количества шпуров
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/vv-in-spurs'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/vv-in-spurs"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/vv-in-spurs">
-            Средняя величина заряда в шпуре
-          </Link>
-        </li>
-        <li
+          Средняя величина заряда в шпуре
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/length-of-zaryad'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/length-of-zaryad"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/length-of-zaryad">
-            Определение длины зарядов
-          </Link>
-        </li>
-        <li
+          Определение длины зарядов
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/length-of-spurs'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/length-of-spurs"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/length-of-spurs">
-            Определение длины шпуров
-          </Link>
-        </li>
-        <li
+          Определение длины шпуров
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/koeff-of-zaryajaniya'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/koeff-of-zaryajaniya"
         >
-          <Link
-            className="navigation-link"
-            to="/calc-of-bvr/koeff-of-zaryajaniya"
-          >
-            Коэффициент заряжания шпуров
-          </Link>
-        </li>
-        <li
+          Коэффициент заряжания шпуров
+        </Link>
+
+        <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/fact-spend-vv'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
+          to="/calc-of-bvr/fact-spend-vv"
         >
-          <Link className="navigation-link" to="/calc-of-bvr/fact-spend-vv">
-            Фактический расход ВВ на заходку
-          </Link>
-        </li>
-      </ul>
+          Фактический расход ВВ на заходку
+        </Link>
+      </div>
     </nav>
   );
 };
