@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const TeorSpendVV = () => {
-  const [spendVV, setSpendVV] = useState({ s: '', l: '' });
+const TeorSpendVV = ({ setTeorSpendVVOnExplore, svch, lengthOfSpur, q }) => {
+  const [spendVV, setSpendVV] = useState({ s: '', l: '', q: '' });
   const [spendVVResult, setSpendVVResult] = useState('');
 
   const handleInputChange = (e) => {
@@ -13,10 +13,21 @@ const TeorSpendVV = () => {
     setSpendVV({ ...spendVV, [name]: value });
   };
 
+  const calcTeorSpendVV = () => {
+    return (spendVV.s * spendVV.l * spendVV.q).toFixed(1);
+  };
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setSpendVVResult(spendVV.s * spendVV.l);
+    setSpendVVResult(calcTeorSpendVV() + ' (кг)');
+    setTeorSpendVVOnExplore(calcTeorSpendVV());
   };
+
+  useEffect(() => {
+    setSpendVV({ ...spendVV }, (spendVV.s = svch));
+    setSpendVV({ ...spendVV }, (spendVV.l = lengthOfSpur));
+    setSpendVV({ ...spendVV }, (spendVV.q = q));
+  }, [svch, lengthOfSpur]);
 
   return (
     <DivisionForm
@@ -27,7 +38,9 @@ const TeorSpendVV = () => {
       result={spendVVResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Площадь выработки в черне, м2</h3>
+        <h3 className="division-text">
+          S<sub>вч</sub> - площадь выработки в черне, м<sup>2</sup>
+        </h3>
         <input
           value={spendVV.s}
           onChange={handleInputChange}
@@ -39,7 +52,9 @@ const TeorSpendVV = () => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Длина шпура, м</h3>
+        <h3 className="division-text">
+          l<sub>шп</sub> - длина шпура, м
+        </h3>
         <input
           value={spendVV.l}
           onChange={handleInputChange}
@@ -47,6 +62,21 @@ const TeorSpendVV = () => {
           className="division-input"
           id="l"
           name="l"
+          maxLength="200"
+          required
+        />
+      </div>
+      <div className="division-label">
+        <h3 className="division-text">
+          q – удельный расход ВВ, кг/м<sup>3</sup>
+        </h3>
+        <input
+          value={spendVV.q}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="q"
+          name="q"
           maxLength="200"
           required
         />

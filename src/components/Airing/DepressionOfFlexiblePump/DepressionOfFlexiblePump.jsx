@@ -19,7 +19,13 @@ const DepressionOfFlexiblePump = ({ setDepressionOfFlexiblePumpForRes }) => {
   };
 
   const calcDepressionOfFlexiblePump = () => {
-    return 1.2 * depressionOfFlexiblePump.Rtr * depressionOfFlexiblePump.Qv;
+    return (
+      (
+        1.2 *
+        depressionOfFlexiblePump.Rtr *
+        depressionOfFlexiblePump.Qv
+      ).toFixed(1) + ' (Па)'
+    );
   };
 
   const handleSubmitForm = (e) => {

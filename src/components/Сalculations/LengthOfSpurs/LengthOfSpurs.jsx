@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const LengthOfSpurs = ({ setLengthOfSpur }) => {
+const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
   const [lengthOfSpurs, setLengthOfSpurs] = useState({
-    Length: '',
-    tp: '',
-    Vnorm: '',
-    Nsm: '',
+    speed: '',
+    tc: '',
+    B: '',
+    m: '',
     Nz: '',
     kishOfLength: '',
   });
-  const [lengthOfSpursResult, setLengthOfZaryadResult] = useState('');
+  const [lengthOfSpursResult, setLengthOfSpursResult] = useState('');
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -20,22 +20,24 @@ const LengthOfSpurs = ({ setLengthOfSpur }) => {
     setLengthOfSpurs({ ...lengthOfSpurs, [name]: value });
   };
 
+  useEffect(() => {
+    setLengthOfSpurs(
+      { ...lengthOfSpurs },
+      (lengthOfSpurs.kishOfLength = kishResultForLength)
+    );
+  }, [kishResultForLength]);
+
   const calcLengthOfSpurs = () => {
     return (
-      lengthOfSpurs.Length /
-      (lengthOfSpurs.tp *
-        lengthOfSpurs.Vnorm *
-        lengthOfSpurs.Nsm *
-        lengthOfSpurs.Nz *
-        lengthOfSpurs.kishOfLength)
-    );
+      (lengthOfSpurs.speed * lengthOfSpurs.tc) /
+      (lengthOfSpurs.B * lengthOfSpurs.m * lengthOfSpurs.kishOfLength)
+    ).toFixed(2);
   };
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setLengthOfZaryadResult(calcLengthOfSpurs());
+    setLengthOfSpursResult(calcLengthOfSpurs() + ' (м)');
     setLengthOfSpur(calcLengthOfSpurs());
-    console.log(calcLengthOfSpurs());
   };
 
   return (
@@ -45,29 +47,33 @@ const LengthOfSpurs = ({ setLengthOfSpur }) => {
         title="Определение длины шпуров"
         name="lengthOfSpurs"
         onSubmit={handleSubmitForm}
-        result={`${lengthOfSpursResult} м`}
+        result={lengthOfSpursResult}
       >
         <div className="division-label">
-          <h3 className="division-text">Длина выработки, м</h3>
+          <h3 className="division-text">
+            V - скорость проведения выработки, м/мес
+          </h3>
           <input
-            value={lengthOfSpurs.Length}
+            value={lengthOfSpurs.speed}
             onChange={handleInputChange}
             type="text"
             className="division-input"
-            id="Length"
-            name="Length"
+            id="speed"
+            name="speed"
             required
           />
         </div>
         <div className="division-label">
-          <h3 className="division-text">Число рабочих дней в месяце</h3>
+          <h3 className="division-text">
+            Т<sub>ц</sub> – продолжительность цикла (1-2 смены)
+          </h3>
           <input
-            value={lengthOfSpurs.tp}
+            value={lengthOfSpurs.tc}
             onChange={handleInputChange}
             type="text"
             className="division-input"
-            id="tp"
-            name="tp"
+            id="tc"
+            name="tc"
             maxLength="200"
             required
           />
@@ -75,40 +81,29 @@ const LengthOfSpurs = ({ setLengthOfSpur }) => {
 
         <div className="division-label">
           <h3 className="division-text">
-            Нормативные скорости проведения выработки, м/мес
+            в – количество смен в сутки по проходке выработки
           </h3>
           <input
-            value={lengthOfSpurs.Vnorm}
+            value={lengthOfSpurs.B}
             onChange={handleInputChange}
             type="text"
             className="division-input"
-            id="Vnorm"
-            name="Vnorm"
+            id="B"
+            name="B"
             required
           />
         </div>
         <div className="division-label">
-          <h3 className="division-text">Число рабочих смен в сутки</h3>
+          <h3 className="division-text">
+            m – количество рабочих дней для проходческой бригады в месяц
+          </h3>
           <input
-            value={lengthOfSpurs.Nsm}
+            value={lengthOfSpurs.m}
             onChange={handleInputChange}
             type="text"
             className="division-input"
-            id="Nsm"
-            name="Nsm"
-            maxLength="200"
-            required
-          />
-        </div>
-        <div className="division-label">
-          <h3 className="division-text">Число циклов в смену</h3>
-          <input
-            value={lengthOfSpurs.Nz}
-            onChange={handleInputChange}
-            type="text"
-            className="division-input"
-            id="Nz"
-            name="Nz"
+            id="m"
+            name="m"
             maxLength="200"
             required
           />

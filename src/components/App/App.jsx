@@ -31,6 +31,10 @@ import DepressionOfHardPump from '../Airing/DepressionOfHardPump/DepressionOfHar
 function App() {
   const location = useLocation();
 
+  const [svch, setSvch] = useState('');
+  const [spr, setSpr] = useState('');
+  const [q, setQ] = useState('');
+  const [p, setP] = useState('');
   // стейты БВР
   const [zaryadInSpurs, setZaryadInSpurs] = useState({});
   const [kishResultForLength, setKishResultForLength] = useState('');
@@ -106,10 +110,13 @@ function App() {
             path="/calc-of-bvr/kish" // Начало параметров БВР
             element={<Kish setKishResultForLength={setKishResultForLength} />}
           />
-          <Route path="/calc-of-bvr/kki" element={<Kki setKki={setKki} />} />
+          <Route
+            path="/calc-of-bvr/kki"
+            element={<Kki setKki={setKki} setSpr={setSpr} setSvch={setSvch} />}
+          />
           <Route
             path="/calc-of-bvr/kzsh"
-            element={<Kzsh setKzsh={setKzsh} />}
+            element={<Kzsh setKzsh={setKzsh} lengthOfSpur={lengthOfSpur} />}
           />
           <Route
             path="/calc-of-bvr/depth-of-spurs"
@@ -117,18 +124,34 @@ function App() {
           />
           <Route
             path="/calc-of-bvr/specific-vv"
-            element={<SpecificVV setSpecificVVRes={setSpecificVVRes} />}
+            element={
+              <SpecificVV
+                setSpecificVVRes={setSpecificVVRes}
+                svch={svch}
+                setQ={setQ}
+              />
+            }
           />
           <Route
             path="/calc-of-bvr/spend-vv"
             element={
-              <TeorSpendVV setTeorSpendVVOnExplore={setTeorSpendVVOnExplore} />
+              <TeorSpendVV
+                setTeorSpendVVOnExplore={setTeorSpendVVOnExplore}
+                svch={svch}
+                lengthOfSpur={lengthOfSpur}
+                q={q}
+              />
             }
           />
           <Route
             path="/calc-of-bvr/quantity-of-spurs"
             element={
-              <QuantityOfSpurs setQuantityOfSpursRes={setQuantityOfSpursRes} />
+              <QuantityOfSpurs
+                setQuantityOfSpursRes={setQuantityOfSpursRes}
+                spr={spr}
+                q={q}
+                kzsh={kzsh}
+              />
             }
           />
           <Route
@@ -138,6 +161,8 @@ function App() {
                 setZaryadInSpurs={setZaryadInSpurs}
                 setAllSpurs={setAllSpurs}
                 setWeigthOfAllSpurs={setWeigthOfAllSpurs}
+                quantityOfSpursRes={quantityOfSpursRes}
+                teorSpendVVOnExplore={teorSpendVVOnExplore}
               />
             }
           />

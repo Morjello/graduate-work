@@ -21,10 +21,12 @@ const DepressionOfHardPump = ({ setDepressionOfHardPumpForRes }) => {
 
   const calcDepressionOfHardPump = () => {
     return (
-      1.2 *
-      depressionOfHardPump.Rtr *
-      depressionOfHardPump.Kyt *
-      depressionOfHardPump.Qzv
+      (
+        1.2 *
+        depressionOfHardPump.Rtr *
+        depressionOfHardPump.Kyt *
+        depressionOfHardPump.Qzv
+      ).toFixed(1) + ' (Па)'
     );
   };
 

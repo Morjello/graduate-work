@@ -21,8 +21,8 @@ const DepthOfSpurs = ({ setdepthOfSpursRes }) => {
   };
 
   const calcDepthOfSpurs = ({ speed, time, b, m, n }) => {
-    const res = (speed * time) / (b * m * n);
-    return res;
+    const res = ((speed * time) / (b * m * n)) * 1.1;
+    return res.toFixed(2) + ' (м)';
   };
 
   const handleSubmitForm = (e) => {
@@ -40,7 +40,9 @@ const DepthOfSpurs = ({ setdepthOfSpursRes }) => {
       result={depthOfSpursResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Скорость проведения выработки, м/мес</h3>
+        <h3 className="division-text">
+          V - скорость проведения выработки, м/мес
+        </h3>
         <input
           value={depthOfSpurs.speed}
           onChange={handleInputChange}
@@ -52,7 +54,9 @@ const DepthOfSpurs = ({ setdepthOfSpursRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Продолжительность цикла</h3>
+        <h3 className="division-text">
+          Т<sub>ц</sub> – продолжительность цикла
+        </h3>
         <input
           value={depthOfSpurs.time}
           onChange={handleInputChange}
@@ -65,7 +69,7 @@ const DepthOfSpurs = ({ setdepthOfSpursRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Количество смен в сутки</h3>
+        <h3 className="division-text">в – количество смен в сутки</h3>
         <input
           value={depthOfSpurs.b}
           onChange={handleInputChange}
@@ -79,7 +83,7 @@ const DepthOfSpurs = ({ setdepthOfSpursRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Количество рабочих дней для проходческой бригады в месяц
+          m – количество рабочих дней для проходческой бригады в месяц
         </h3>
         <input
           value={depthOfSpurs.m}
@@ -93,7 +97,7 @@ const DepthOfSpurs = ({ setdepthOfSpursRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">КИШ</h3>
+        <h3 className="division-text">Коэффициент использования шпуров</h3>
         <input
           value={depthOfSpurs.n}
           onChange={handleInputChange}

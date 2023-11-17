@@ -16,7 +16,7 @@ const Kish = ({ setKishResultForLength }) => {
   };
 
   const calcKish = () => {
-    return division(kishData.length, kishData.depth);
+    return division(kishData.length, kishData.depth).toFixed(2);
   };
 
   const handleSubmitForm = (e) => {
@@ -34,7 +34,9 @@ const Kish = ({ setKishResultForLength }) => {
       result={kishResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Продвигание забоя за цикл, м</h3>
+        <h3 className="division-text">
+          l<sub>зах</sub> – подвигание забоя за цикл, м
+        </h3>
         <input
           value={kishData.length}
           onChange={handleInputChange}
@@ -46,7 +48,9 @@ const Kish = ({ setKishResultForLength }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Глубина шпура, м</h3>
+        <h3 className="division-text">
+          l<sub>шп</sub> – глубина шпура, м
+        </h3>
         <input
           value={kishData.depth}
           onChange={handleInputChange}

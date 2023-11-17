@@ -17,7 +17,7 @@ const AirForPeople = ({ setAirForPeopleForRes }) => {
   };
 
   const calcAirForPeople = () => {
-    return 6 * airForPeople.n;
+    return 6 * airForPeople.n + ' (м3/мин)';
   };
 
   const handleSubmitForm = (e) => {

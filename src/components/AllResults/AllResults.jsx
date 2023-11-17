@@ -45,31 +45,43 @@ const AllResults = ({
           <th className="results-text">{kzsh}</th>
         </tr>
         <tr className="results-cell">
-          <th className="results-text">Определение глубины шпуров:</th>
+          <th className="results-text">Длина шпуров:</th>
+          <th className="results-text">
+            {lengthOfSpur.length >= 1 ? lengthOfSpur + ' (м)' : ''}
+          </th>
+        </tr>
+        {/* <tr className="results-cell">
+          <th className="results-text">Глубина шпуров:</th>
           <th className="results-text">{depthOfSpursRes}</th>
+        </tr> */}
+        <tr className="results-cell">
+          <th className="results-text">Удельный расход ВВ:</th>
+          <th className="results-text">
+            {specificVVRes.length >= 1 ? +specificVVRes + ' (кг/м3)' : ''}
+          </th>
         </tr>
         <tr className="results-cell">
-          <th className="results-text">Определение удельного расхода ВВ:</th>
-          <th className="results-text">{specificVVRes}</th>
+          <th className="results-text">Теоретический расход ВВ:</th>
+          <th className="results-text">
+            {teorSpendVVOnExplore.length >= 1
+              ? teorSpendVVOnExplore + ' (кг)'
+              : ''}
+          </th>
         </tr>
         <tr className="results-cell">
-          <th className="results-text">Теоретический расход ВВ на взрыв:</th>
-          <th className="results-text">{teorSpendVVOnExplore}</th>
-        </tr>
-        <tr className="results-cell">
-          <th className="results-text">Определение количества шпуров:</th>
+          <th className="results-text">Количество шпуров:</th>
           <th className="results-text">{quantityOfSpursRes}</th>
         </tr>
         <tr className="results-cell">
-          <th className="results-text">Величина заряда во врубовых шпурах:</th>
-          <th className="results-text">{allSpurs.vrub}</th>
+          <th className="results-text">Заряд во врубовых шпурах:</th>
+          <th className="results-text">{allSpurs.vrub} </th>
         </tr>
         <tr className="results-cell">
-          <th className="results-text">Величина заряда в отбойных шпурах:</th>
+          <th className="results-text">Заряд в отбойных шпурах:</th>
           <th className="results-text">{allSpurs.okont}</th>
         </tr>
         <tr className="results-cell">
-          <th className="results-text">Величина заряда в контурных шпурах:</th>
+          <th className="results-text">Заряд в контурных шпурах:</th>
           <th className="results-text">{allSpurs.kontur}</th>
         </tr>
         <tr className="results-cell">
@@ -97,11 +109,9 @@ const AllResults = ({
           <th className="results-text">{lengthOfAllSpurs.kontur}</th>
         </tr>
         <tr className="results-cell">
-          <th className="results-text">Длина шпуров:</th>
-          <th className="results-text">{lengthOfSpur}</th>
-        </tr>
-        <tr className="results-cell">
-          <th className="results-text">Коэффициент заряжания шпуров:</th>
+          <th className="results-text">
+            Коэффициент заряжания (заполнения) шпуров:
+          </th>
           <th className="results-text">{koeffOfZarForRes}</th>
         </tr>
         <tr className="results-cell">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 import division from '../../func/division';
@@ -26,8 +26,15 @@ const KoeffOfZaryajaniya = ({
     return division(
       koeffOfZaryajaniya.lengthZar,
       koeffOfZaryajaniya.lengthSpur
-    );
+    ).toFixed(2);
   };
+
+  useEffect(() => {
+    setKoeffOfZaryajaniya(
+      { ...koeffOfZaryajaniya },
+      (koeffOfZaryajaniya.lengthSpur = lengthOfSpur)
+    );
+  }, [lengthOfSpur]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -38,13 +45,15 @@ const KoeffOfZaryajaniya = ({
   return (
     <DivisionForm
       id="15"
-      title="Определение коэффициента заряжания шпуров"
+      title="Коэффициент заряжания (заполнения) шпуров"
       name="koeffOfZaryajaniya"
       onSubmit={handleSubmitForm}
       result={koeffOfZaryajaniyaResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Длина заряда, см</h3>
+        <h3 className="division-text">
+          L<sub>зар</sub> - длина заряда, см
+        </h3>
         <input
           value={koeffOfZaryajaniya.lengthZar}
           onChange={handleInputChange}
@@ -56,7 +65,9 @@ const KoeffOfZaryajaniya = ({
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Длина шпура, см</h3>
+        <h3 className="division-text">
+          L<sub>шп</sub>- длина шпура, см
+        </h3>
         <input
           value={koeffOfZaryajaniya.lengthSpur}
           onChange={handleInputChange}

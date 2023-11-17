@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const SpecificVV = ({ setSpecificVVRes }) => {
+const SpecificVV = ({ svch, setSpecificVVRes, setQ }) => {
   const [specificVV, setSpecificVV] = useState({
-    q1: '',
+    f: '',
     f0: '',
-    v: '',
-    e: '',
+    Svch: '',
+    P: '',
+    m: '',
   });
   const [specificVVResult, setSpecificVVResult] = useState('');
 
@@ -18,15 +19,22 @@ const SpecificVV = ({ setSpecificVVRes }) => {
     setSpecificVV({ ...specificVV, [name]: value });
   };
 
-  const calcSpecificVV = ({ q1, f0, v, e }) => {
-    const res = q1 * f0 * v * e;
-    return res;
+  const calcSpecificVV = () => {
+    const v = 6.5 / specificVV.Svch ** (1 / 2);
+    const eKoef = 380 / specificVV.P;
+    const res = specificVV.f * specificVV.f0 * v * specificVV.m * eKoef * 0.1;
+    return res.toFixed(2);
   };
+
+  useEffect(() => {
+    setSpecificVV({ ...specificVV }, (specificVV.Svch = svch));
+  }, [svch]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setSpecificVVResult(calcSpecificVV(specificVV));
-    setSpecificVVRes(calcSpecificVV(specificVV));
+    setSpecificVVResult(calcSpecificVV() + ' (кг/м3)');
+    setSpecificVVRes(calcSpecificVV());
+    setQ(calcSpecificVV());
   };
 
   return (
@@ -38,19 +46,24 @@ const SpecificVV = ({ setSpecificVVRes }) => {
       result={specificVVResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Удельный расход, кг/м3</h3>
+        <h3 className="division-text">
+          f – средняя крепость пород в забое выработки
+        </h3>
         <input
-          value={specificVV.q1}
+          value={specificVV.f}
           onChange={handleInputChange}
           type="text"
           className="division-input"
-          id="q1"
-          name="q1"
+          id="f"
+          name="f"
+          maxLength="200"
           required
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Коэффицент крепости пород</h3>
+        <h3 className="division-text">
+          f<sub>0</sub> – коэффициент структуры породы
+        </h3>
         <input
           value={specificVV.f0}
           onChange={handleInputChange}
@@ -63,27 +76,46 @@ const SpecificVV = ({ setSpecificVVRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Коэффициент зажима</h3>
+        <h3 className="division-text">
+          S<sub>вч</sub> – площадь выработки вчерне, м<sup>2</sup>
+        </h3>
         <input
-          value={specificVV.v}
+          value={specificVV.Svch}
           onChange={handleInputChange}
           type="text"
           className="division-input"
-          id="v"
-          name="v"
+          id="Svch"
+          name="Svch"
           maxLength="200"
           required
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Коэффицент работоспособности ВВ</h3>
+        <h3 className="division-text">
+          P - работоспособность принятого ВВ, см<sup>3</sup>
+        </h3>
         <input
-          value={specificVV.e}
+          value={specificVV.P}
           onChange={handleInputChange}
           type="text"
           className="division-input"
-          id="e"
-          name="e"
+          id="P"
+          name="P"
+          maxLength="200"
+          required
+        />
+      </div>
+      <div className="division-label">
+        <h3 className="division-text">
+          m – коэффициент учитывающий диаметр патрона ВВ
+        </h3>
+        <input
+          value={specificVV.m}
+          onChange={handleInputChange}
+          type="text"
+          className="division-input"
+          id="m"
+          name="m"
           maxLength="200"
           required
         />

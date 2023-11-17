@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import division from '../../func/division';
 import '../../DivisionForm/DivisionForm.sass';
 
-const VVinSpurs = ({ setZaryadInSpurs, setAllSpurs, setWeigthOfAllSpurs }) => {
+const VVinSpurs = ({
+  setZaryadInSpurs,
+  setAllSpurs,
+  setWeigthOfAllSpurs,
+  quantityOfSpursRes,
+  teorSpendVVOnExplore,
+}) => {
   const [vvInSpurs, setVvInSpurs] = useState({ Q: '', N: '', m: '' });
   const [vvInSpursResult, setVvInSpursResult] = useState('');
 
@@ -15,23 +21,33 @@ const VVinSpurs = ({ setZaryadInSpurs, setAllSpurs, setWeigthOfAllSpurs }) => {
     setVvInSpurs({ ...vvInSpurs, [name]: value });
   };
 
+  useEffect(() => {
+    setVvInSpurs({ ...vvInSpurs }, (vvInSpurs.Q = teorSpendVVOnExplore));
+    setVvInSpurs({ ...vvInSpurs }, (vvInSpurs.N = quantityOfSpursRes));
+  }, [teorSpendVVOnExplore, quantityOfSpursRes]);
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setVvInSpursResult(division(vvInSpurs.Q, vvInSpurs.N));
+    setVvInSpursResult(division(vvInSpurs.Q, vvInSpurs.N).toFixed(2) + ' (кг)');
     setAllSpurs({
-      vrub: (vvInSpurs.Q / vvInSpurs.N) * 1.2,
-      okont: vvInSpurs.Q / vvInSpurs.N,
-      kontur: (vvInSpurs.Q / vvInSpurs.N) * 0.9,
+      vrub: ((vvInSpurs.Q / vvInSpurs.N) * 1.2).toFixed(2) + ' (кг)',
+      okont: (vvInSpurs.Q / vvInSpurs.N).toFixed(2) + ' (кг)',
+      kontur: ((vvInSpurs.Q / vvInSpurs.N) * 0.9).toFixed(2) + ' (кг)',
     });
     setZaryadInSpurs({
-      vrub: (vvInSpurs.Q / vvInSpurs.N) * 1.2,
-      okont: vvInSpurs.Q / vvInSpurs.N,
-      kontur: (vvInSpurs.Q / vvInSpurs.N) * 0.9,
+      vrub: ((vvInSpurs.Q / vvInSpurs.N) * 1.2).toFixed(2) + ' (кг)',
+      okont: (vvInSpurs.Q / vvInSpurs.N).toFixed(2) + ' (кг)',
+      kontur: ((vvInSpurs.Q / vvInSpurs.N) * 0.9).toFixed(2) + ' (кг)',
     });
     setWeigthOfAllSpurs({
-      vrubWeigth: ((vvInSpurs.Q / vvInSpurs.N) * 1.2) / vvInSpurs.m,
-      okontWeigth: vvInSpurs.Q / vvInSpurs.N / vvInSpurs.m,
-      konturWeigth: ((vvInSpurs.Q / vvInSpurs.N) * 0.9) / vvInSpurs.m,
+      vrubWeigth:
+        (((vvInSpurs.Q / vvInSpurs.N) * 1.2) / vvInSpurs.m).toFixed(2) +
+        ' (кг)',
+      okontWeigth:
+        (vvInSpurs.Q / vvInSpurs.N / vvInSpurs.m).toFixed(2) + ' (кг)',
+      konturWeigth:
+        (((vvInSpurs.Q / vvInSpurs.N) * 0.9) / vvInSpurs.m).toFixed(2) +
+        ' (кг)',
     });
   };
 
@@ -44,7 +60,9 @@ const VVinSpurs = ({ setZaryadInSpurs, setAllSpurs, setWeigthOfAllSpurs }) => {
       result={vvInSpursResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Расход ВВ на взрыв, кг</h3>
+        <h3 className="division-text">
+          Q – расход ВВ на взрыв (теоретический), (кг)
+        </h3>
         <input
           value={vvInSpurs.Q}
           onChange={handleInputChange}
@@ -56,7 +74,7 @@ const VVinSpurs = ({ setZaryadInSpurs, setAllSpurs, setWeigthOfAllSpurs }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Количество шпуров, шт</h3>
+        <h3 className="division-text">N – количество шпуров, шт</h3>
         <input
           value={vvInSpurs.N}
           onChange={handleInputChange}
@@ -70,7 +88,7 @@ const VVinSpurs = ({ setZaryadInSpurs, setAllSpurs, setWeigthOfAllSpurs }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Масса заряда должна быть кратна массе патрона
+          Масса заряда (должна быть кратна массе патрона)
         </h3>
         <input
           value={vvInSpurs.m}

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 
-const QuantityOfSpurs = ({ setQuantityOfSpursRes }) => {
+const QuantityOfSpurs = ({ setQuantityOfSpursRes, spr, q, kzsh }) => {
   const [quantityOfSpurs, setQuantityOfSpurs] = useState({
     q: '',
     S: '',
@@ -22,8 +22,14 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes }) => {
 
   const calcDepthOfSpurs = ({ q, S, p, d, a }) => {
     const res = (1, 27 * q * S) / (p * d, a);
-    return res;
+    return res + ' (шп)';
   };
+
+  useEffect(() => {
+    setQuantityOfSpurs({ ...quantityOfSpurs }, (quantityOfSpurs.S = spr));
+    setQuantityOfSpurs({ ...quantityOfSpurs }, (quantityOfSpurs.q = q));
+    setQuantityOfSpurs({ ...quantityOfSpurs }, (quantityOfSpurs.a = kzsh));
+  });
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -40,7 +46,9 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes }) => {
       result={quantityOfSpursResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Удельный расход ВВ, кг/м3</h3>
+        <h3 className="division-text">
+          q – удельный расход ВВ, кг/м<sup>3</sup>
+        </h3>
         <input
           value={quantityOfSpurs.q}
           onChange={handleInputChange}
@@ -52,7 +60,9 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Площадь в проходке, м2</h3>
+        <h3 className="division-text">
+          S<sub>пр</sub> – площадь выработки в проходке, м<sup>2</sup>
+        </h3>
         <input
           value={quantityOfSpurs.S}
           onChange={handleInputChange}
@@ -65,7 +75,9 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Плотность ВВ в патроне, кг/м3</h3>
+        <h3 className="division-text">
+          P - плотность ВВ в патроне, кг/м<sup>3</sup>
+        </h3>
         <input
           value={quantityOfSpurs.p}
           onChange={handleInputChange}
@@ -78,7 +90,7 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Диаметр шпура, м</h3>
+        <h3 className="division-text">d - диаметр шпура, м</h3>
         <input
           value={quantityOfSpurs.m}
           onChange={handleInputChange}

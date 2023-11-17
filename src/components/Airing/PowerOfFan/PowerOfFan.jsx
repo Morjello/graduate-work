@@ -18,7 +18,7 @@ const PowerOfFan = ({ setPowerOfFanForRes }) => {
   };
 
   const calcPowerOfFan = () => {
-    return powerOfFan.Kyt * powerOfFan.Qzp;
+    return (powerOfFan.Kyt * powerOfFan.Qzp).toFixed(1) + ' (м3/мин)';
   };
 
   const handleSubmitForm = (e) => {
@@ -37,7 +37,9 @@ const PowerOfFan = ({ setPowerOfFanForRes }) => {
       result={powerOfFanResult}
     >
       <div className="division-label">
-        <h3 className="division-text">kут – коэффициент утечек воздуха</h3>
+        <h3 className="division-text">
+          k<sub>ут</sub> – коэффициент утечек воздуха
+        </h3>
         <input
           value={powerOfFan.Kyt}
           onChange={handleInputChange}
@@ -50,8 +52,8 @@ const PowerOfFan = ({ setPowerOfFanForRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Qз.п. - количества воздуха по минимальной скорости движения воздуха,
-          м/с
+          Q<sub>зп</sub> - количества воздуха по минимальной скорости движения
+          воздуха, м/с
         </h3>
         <input
           value={powerOfFan.Qzp}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
-import division from '../../func/division';
 
 const FactSpendVV = ({ setFactSpendVVForRes }) => {
   const [factSpendVV, setFactSpendVV] = useState({
@@ -23,7 +22,16 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
   };
 
   const calcFactSpendVV = () => {
-    return division(factSpendVV.length, factSpendVV.depth);
+    return (
+      (
+        factSpendVV.qvr *
+        factSpendVV.Nvr *
+        factSpendVV.qotb *
+        factSpendVV.Notb *
+        factSpendVV.qkon *
+        factSpendVV.Nkon
+      ).toFixed(1) + ' (кг)'
+    );
   };
 
   const handleSubmitForm = (e) => {
@@ -41,7 +49,9 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
       result={factSpendVVResult}
     >
       <div className="division-label">
-        <h3 className="division-text">qвр</h3>
+        <h3 className="division-text">
+          q<sub>вр</sub> - величина заряда во врубовых шпурах
+        </h3>
         <input
           value={factSpendVV.qvr}
           onChange={handleInputChange}
@@ -53,7 +63,9 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Nвр</h3>
+        <h3 className="division-text">
+          N<sub>вр</sub> - количество врубовых шпуров
+        </h3>
         <input
           value={factSpendVV.Nvr}
           onChange={handleInputChange}
@@ -66,7 +78,9 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">qотб</h3>
+        <h3 className="division-text">
+          q<sub>отб</sub> - величина заряда во отбойных шпурах
+        </h3>
         <input
           value={factSpendVV.qotb}
           onChange={handleInputChange}
@@ -79,7 +93,9 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Nотб</h3>
+        <h3 className="division-text">
+          N<sub>отб</sub> - количество отбойных шпуров
+        </h3>
         <input
           value={factSpendVV.Notb}
           onChange={handleInputChange}
@@ -92,7 +108,9 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">qкон</h3>
+        <h3 className="division-text">
+          q<sub>конт</sub> - величина заряда во контурных шпурах
+        </h3>
         <input
           value={factSpendVV.qkon}
           onChange={handleInputChange}
@@ -105,7 +123,9 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Nкон</h3>
+        <h3 className="division-text">
+          N<sub>конт</sub> - количество контурных шпуров
+        </h3>
         <input
           value={factSpendVV.Nkon}
           onChange={handleInputChange}

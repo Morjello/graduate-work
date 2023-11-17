@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import division from '../../func/division';
 
-const LengthOfZaryad = ({
-  zaryadInSpurs,
-  setLengthOfZar,
-  setLengthOfAllSpurs,
-}) => {
+const LengthOfZaryad = ({ setLengthOfAllSpurs }) => {
   const [lengthOfZaryad, setLengthOfZaryad] = useState({
     pressure: '',
     radius: '',
@@ -27,25 +23,21 @@ const LengthOfZaryad = ({
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setLengthOfZaryadResult(
-      division(lengthOfZaryad.pressure, lengthOfZaryad.radius)
+      division(lengthOfZaryad.pressure, lengthOfZaryad.radius).toFixed(2) +
+        ' (см)'
     );
-
     setLengthOfAllSpurs({
-      vrub: calcLengthOfZatyad(zaryadInSpurs.vrub ?? lengthOfZaryad.vrub),
-      okont: calcLengthOfZatyad(zaryadInSpurs.okont ?? lengthOfZaryad.okont),
-      kontur: calcLengthOfZatyad(zaryadInSpurs.kontur ?? lengthOfZaryad.kontur),
-    });
-    setLengthOfZar({
-      vrub: calcLengthOfZatyad(zaryadInSpurs.vrub ?? lengthOfZaryad.vrub),
-      okont: calcLengthOfZatyad(zaryadInSpurs.okont ?? lengthOfZaryad.okont),
-      kontur: calcLengthOfZatyad(zaryadInSpurs.kontur ?? lengthOfZaryad.kontur),
+      vrub: calcLengthOfZatyad(lengthOfZaryad.vrub),
+      okont: calcLengthOfZatyad(lengthOfZaryad.okont),
+      kontur: calcLengthOfZatyad(lengthOfZaryad.kontur),
     });
   };
 
-  const calcLengthOfZatyad = (q) => {
+  const calcLengthOfZatyad = (length) => {
     const square =
       3.14 * (lengthOfZaryad.radius / 2) * (lengthOfZaryad.radius / 2);
-    return q / (lengthOfZaryad.pressure * square);
+    const res = length / (lengthOfZaryad.pressure * square);
+    return res.toFixed(2) + ' (см)';
   };
 
   return (
@@ -57,7 +49,9 @@ const LengthOfZaryad = ({
       result={lengthOfZaryadResult}
     >
       <div className="division-label">
-        <h3 className="division-text">Плотность ВВ в патроне, г/см3</h3>
+        <h3 className="division-text">
+          P - плотность ВВ в патроне, г/см<sup>3</sup>
+        </h3>
         <input
           value={lengthOfZaryad.pressure}
           onChange={handleInputChange}
@@ -69,7 +63,7 @@ const LengthOfZaryad = ({
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Радиус патрона, см</h3>
+        <h3 className="division-text">r - радиус патрона, см</h3>
         <input
           value={lengthOfZaryad.radius}
           onChange={handleInputChange}
@@ -85,7 +79,7 @@ const LengthOfZaryad = ({
       <div className="division-label">
         <h3 className="division-text">Величина заряда во врубовых шпурах, г</h3>
         <input
-          value={zaryadInSpurs.vrub ?? lengthOfZaryad.vrub}
+          value={lengthOfZaryad.vrub}
           onChange={handleInputChange}
           type="text"
           className="division-input"
@@ -97,7 +91,7 @@ const LengthOfZaryad = ({
       <div className="division-label">
         <h3 className="division-text">Величина заряда в отбойных шпуре, г</h3>
         <input
-          value={zaryadInSpurs.okont ?? lengthOfZaryad.okont}
+          value={lengthOfZaryad.okont}
           onChange={handleInputChange}
           type="text"
           className="division-input"
@@ -110,7 +104,7 @@ const LengthOfZaryad = ({
       <div className="division-label">
         <h3 className="division-text">Величина заряда в контурных шпурах, г</h3>
         <input
-          value={zaryadInSpurs.kontur ?? lengthOfZaryad.kontur}
+          value={lengthOfZaryad.kontur}
           onChange={handleInputChange}
           type="text"
           className="division-input"

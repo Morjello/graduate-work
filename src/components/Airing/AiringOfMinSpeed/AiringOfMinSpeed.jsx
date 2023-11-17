@@ -18,7 +18,10 @@ const AiringOfMinSpeed = ({ setAiringOfMinSpeedForRes }) => {
   };
 
   const calcAiringOfMinSpeed = () => {
-    return 60 * airingOfMinSpeed.Vmin * airingOfMinSpeed.Scv;
+    return (
+      (60 * airingOfMinSpeed.Vmin * airingOfMinSpeed.Scv).toFixed(1) +
+      ' (м3/мин)'
+    );
   };
 
   const handleSubmitForm = (e) => {
@@ -37,8 +40,8 @@ const AiringOfMinSpeed = ({ setAiringOfMinSpeedForRes }) => {
     >
       <div className="division-label">
         <h3 className="division-text">
-          Vmin - общий расход воздуха по минимальной скорости движения воздуха,
-          м/с
+          V<sub>min</sub> - общий расход воздуха по минимальной скорости
+          движения воздуха, м/с
         </h3>
         <input
           value={airingOfMinSpeed.Vmin}
@@ -52,7 +55,7 @@ const AiringOfMinSpeed = ({ setAiringOfMinSpeedForRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Sсв - площадь выработки в свету, м<sup>3</sup>
+          S<sub>св</sub> - площадь выработки в свету, м<sup>3</sup>
         </h3>
         <input
           value={airingOfMinSpeed.Scv}

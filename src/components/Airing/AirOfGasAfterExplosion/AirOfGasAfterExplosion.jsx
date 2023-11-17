@@ -29,7 +29,7 @@ const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
       (airOfGas.Qvv * airOfGas.Ivv * lengthCalc * airOfGas.Kobv) /
       (airOfGas.Scv * airOfGas.Kyt);
     const thirdCalc = secondCalc ** (1 / 3);
-    return firstCalc * thirdCalc;
+    return (firstCalc * thirdCalc).toFixed(2) + '( м3/мин)';
   };
 
   const handleSubmitForm = (e) => {
@@ -48,7 +48,7 @@ const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
     >
       <div className="division-label">
         <h3 className="division-text">
-          Sсв - площадь выработки в свету, м<sup>3</sup>
+          S<sub>св</sub> - площадь выработки в свету, м<sup>3</sup>
         </h3>
         <input
           value={airOfGas.Scv}
@@ -77,7 +77,7 @@ const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Qвв – масса одновременно взрываемого ВВ, кг
+          Q<sub>вв</sub> – масса одновременно взрываемого ВВ, кг
         </h3>
         <input
           value={airOfGas.Qvv}
@@ -91,7 +91,9 @@ const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Iвв – газовость ВВ, л/кг</h3>
+        <h3 className="division-text">
+          I<sub>вв</sub> – газовость ВВ, л/кг
+        </h3>
         <input
           value={airOfGas.Ivv}
           onChange={handleInputChange}
@@ -118,7 +120,7 @@ const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          kобв – коэффициент, учитывающий обводненность выработки
+          k<sub>обв</sub> – коэффициент, учитывающий обводненность выработки
         </h3>
         <input
           value={airOfGas.Kobv}
@@ -132,7 +134,9 @@ const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">kут – коэффициент утечек воздуха</h3>
+        <h3 className="division-text">
+          k<sub>ут</sub> – коэффициент утечек воздуха
+        </h3>
         <input
           value={airOfGas.Kyt}
           onChange={handleInputChange}

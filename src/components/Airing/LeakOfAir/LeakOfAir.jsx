@@ -32,7 +32,7 @@ const LeakOfAir = ({ setLeakOfAirForRes }) => {
       leakOfAir.dtr *
       (leakOfAir.Ltr / leakOfAir.Lzv) *
       squareRoot;
-    return multiplicationOfArguments ** 2;
+    return (multiplicationOfArguments ** 2).toFixed(2);
   };
 
   const handleSubmitForm = (e) => {
@@ -51,7 +51,8 @@ const LeakOfAir = ({ setLeakOfAirForRes }) => {
     >
       <div className="division-label">
         <h3 className="division-text">
-          kуд.ст – удельный стыковочный коэффициент воздухонепроницаемости
+          k<sub>уд.ст</sub> – удельный стыковочный коэффициент
+          воздухонепроницаемости
         </h3>
         <input
           value={leakOfAir.Kyd}
@@ -64,7 +65,9 @@ const LeakOfAir = ({ setLeakOfAirForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">dтр - диаметр трубы, м</h3>
+        <h3 className="division-text">
+          d<sub>тр</sub> - диаметр трубы, м
+        </h3>
         <input
           value={leakOfAir.dtr}
           onChange={handleInputChange}
@@ -77,7 +80,9 @@ const LeakOfAir = ({ setLeakOfAirForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">lтр – длина трубопровода, м</h3>
+        <h3 className="division-text">
+          l<sub>тр</sub> – длина трубопровода, м
+        </h3>
         <input
           value={leakOfAir.Ltr}
           onChange={handleInputChange}
@@ -90,7 +95,9 @@ const LeakOfAir = ({ setLeakOfAirForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">lзв – длина звена трубопровода, м</h3>
+        <h3 className="division-text">
+          l<sub>зв</sub> – длина звена трубопровода, м
+        </h3>
         <input
           value={leakOfAir.Lzv}
           onChange={handleInputChange}
@@ -104,8 +111,8 @@ const LeakOfAir = ({ setLeakOfAirForRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Rтр – аэродинамическое сопротивление трубопровода, H * c<sup>2</sup> /
-          м<sup>8</sup>
+          R<sub>тр</sub> – аэродинамическое сопротивление трубопровода, H*c
+          <sup>2</sup>/м<sup>8</sup>
         </h3>
         <input
           value={leakOfAir.Rtr}
