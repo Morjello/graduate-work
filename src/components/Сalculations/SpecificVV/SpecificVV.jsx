@@ -40,7 +40,7 @@ const SpecificVV = ({ svch, setSpecificVVRes, setQ }) => {
   return (
     <DivisionForm
       id="5"
-      title="Определение удельного расхода ВВ"
+      title="Определение удельного расхода ВВ на 1м обуренной породы "
       name="specificVV"
       onSubmit={handleSubmitForm}
       result={specificVVResult}

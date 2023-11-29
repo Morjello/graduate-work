@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const DepressionOfFlexiblePump = ({ setDepressionOfFlexiblePumpForRes }) => {
+const DepressionOfFlexiblePump = ({
+  setDepressionOfFlexiblePumpForRes,
+  rtr,
+}) => {
   const [depressionOfFlexiblePump, setDepressionOfFlexiblePump] = useState({
     Rtr: '',
     Qv: '',
@@ -28,6 +31,13 @@ const DepressionOfFlexiblePump = ({ setDepressionOfFlexiblePumpForRes }) => {
     );
   };
 
+  useEffect(() => {
+    setDepressionOfFlexiblePump(
+      { ...depressionOfFlexiblePump },
+      (depressionOfFlexiblePump.Rtr = rtr)
+    );
+  }, [rtr]);
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setDepressionOfFlexiblePumpResult(calcDepressionOfFlexiblePump());
@@ -44,8 +54,8 @@ const DepressionOfFlexiblePump = ({ setDepressionOfFlexiblePumpForRes }) => {
     >
       <div className="division-label">
         <h3 className="division-text">
-          Rтр – аэродинамическое сопротивление трубопровода, H * c<sup>2</sup> /
-          м<sup>8</sup>
+          R<sub>тр</sub> – аэродинамическое сопротивление трубопровода, H * c
+          <sup>2</sup> / м<sup>8</sup>
         </h3>
         <input
           value={depressionOfFlexiblePump.Rtr}
@@ -59,7 +69,8 @@ const DepressionOfFlexiblePump = ({ setDepressionOfFlexiblePumpForRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Qв - подача вентилятора местного проветривания, м<sup>3</sup>/мин
+          Q<sub>в</sub> - подача вентилятора местного проветривания, м
+          <sup>3</sup>/мин
         </h3>
         <input
           value={depressionOfFlexiblePump.Qv}

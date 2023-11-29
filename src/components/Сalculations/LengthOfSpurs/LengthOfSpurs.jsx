@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { CALC_LENGTH_OF_SPURS } from '../../../store/actions/actions';
 
-const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
+const LengthOfSpurs = ({ setLengthOfSpur, setLengthOfSpursForDepth }) => {
   const [lengthOfSpurs, setLengthOfSpurs] = useState({
     speed: '',
     tc: '',
     B: '',
     m: '',
     Nz: '',
-    kishOfLength: '',
+    kish: '',
   });
-  const [lengthOfSpursResult, setLengthOfSpursResult] = useState('');
+
+  const dispatch = useDispatch();
+  const lengthOfSpur = useSelector((state) => state.lengthOfSpur);
+  const kish = useSelector((state) => state.kish);
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -20,25 +25,49 @@ const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
     setLengthOfSpurs({ ...lengthOfSpurs, [name]: value });
   };
 
-  useEffect(() => {
-    setLengthOfSpurs(
-      { ...lengthOfSpurs },
-      (lengthOfSpurs.kishOfLength = kishResultForLength)
-    );
-  }, [kishResultForLength]);
+  const calcLengthOfSpurRedux = () => {
+    const res = (
+      (lengthOfSpurs.speed * lengthOfSpurs.tc) /
+      (lengthOfSpurs.B * lengthOfSpurs.m * lengthOfSpurs.kish)
+    ).toFixed(1);
+    dispatch({
+      type: CALC_LENGTH_OF_SPURS,
+      payload: {
+        count: res,
+        speed: lengthOfSpurs.speed,
+        tc: lengthOfSpurs.tc,
+        B: lengthOfSpurs.B,
+        m: lengthOfSpurs.m,
+        Nz: lengthOfSpurs.Nz,
+      },
+    });
+  };
 
   const calcLengthOfSpurs = () => {
     return (
       (lengthOfSpurs.speed * lengthOfSpurs.tc) /
-      (lengthOfSpurs.B * lengthOfSpurs.m * lengthOfSpurs.kishOfLength)
-    ).toFixed(2);
+      (lengthOfSpurs.B * lengthOfSpurs.m * lengthOfSpurs.kish)
+    ).toFixed(1);
   };
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setLengthOfSpursResult(calcLengthOfSpurs() + ' (м)');
+    calcLengthOfSpurRedux();
+
     setLengthOfSpur(calcLengthOfSpurs());
+    setLengthOfSpursForDepth(calcLengthOfSpurs());
   };
+  console.log(lengthOfSpur);
+  useEffect(() => {
+    setLengthOfSpurs({
+      speed: lengthOfSpur.speed,
+      tc: lengthOfSpur.tc,
+      B: lengthOfSpur.B,
+      m: lengthOfSpur.m,
+      Nz: lengthOfSpur.Nz,
+      kish: kish.count,
+    });
+  }, []);
 
   return (
     <>
@@ -47,7 +76,7 @@ const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
         title="Определение длины шпуров"
         name="lengthOfSpurs"
         onSubmit={handleSubmitForm}
-        result={lengthOfSpursResult}
+        result={lengthOfSpur.count + ' м'}
       >
         <div className="division-label">
           <h3 className="division-text">
@@ -111,12 +140,12 @@ const LengthOfSpurs = ({ kishResultForLength, setLengthOfSpur }) => {
         <div className="division-label">
           <h3 className="division-text">Коэффицент использования шпура</h3>
           <input
-            value={lengthOfSpurs.kishOfLength}
+            value={lengthOfSpurs.kish}
             onChange={handleInputChange}
             type="text"
             className="division-input"
-            id="kishOfLength"
-            name="kishOfLength"
+            id="kish"
+            name="kish"
             maxLength="200"
             required
           />

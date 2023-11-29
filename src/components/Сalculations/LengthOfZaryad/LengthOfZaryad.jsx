@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import division from '../../func/division';
 
-const LengthOfZaryad = ({ setLengthOfAllSpurs }) => {
+const LengthOfZaryad = ({ setLengthOfAllSpurs, allSpurs }) => {
   const [lengthOfZaryad, setLengthOfZaryad] = useState({
     pressure: '',
     radius: '',
@@ -32,6 +32,21 @@ const LengthOfZaryad = ({ setLengthOfAllSpurs }) => {
       kontur: calcLengthOfZatyad(lengthOfZaryad.kontur),
     });
   };
+
+  useEffect(() => {
+    setLengthOfZaryad(
+      { ...lengthOfZaryad },
+      (lengthOfZaryad.vrub = allSpurs.vrub * 1000)
+    );
+    setLengthOfZaryad(
+      { ...lengthOfZaryad },
+      (lengthOfZaryad.okont = allSpurs.okont * 1000)
+    );
+    setLengthOfZaryad(
+      { ...lengthOfZaryad },
+      (lengthOfZaryad.kontur = allSpurs.kontur * 1000)
+    );
+  }, [allSpurs]);
 
   const calcLengthOfZatyad = (length) => {
     const square =
@@ -89,7 +104,7 @@ const LengthOfZaryad = ({ setLengthOfAllSpurs }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">Величина заряда в отбойных шпуре, г</h3>
+        <h3 className="division-text">Величина заряда в отбойных шпурах, г</h3>
         <input
           value={lengthOfZaryad.okont}
           onChange={handleInputChange}

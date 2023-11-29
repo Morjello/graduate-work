@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 import division from '../../func/division';
+import { useDispatch, useSelector } from 'react-redux';
+import { CALC_KISH } from '../../../store/actions/actions';
 
 const Kish = ({ setKishResultForLength }) => {
+  const dispatch = useDispatch();
+  const kish = useSelector((state) => state.kish);
+
   const [kishData, setKishData] = useState({ length: '', depth: '' });
-  const [kishResult, setKishResult] = useState('');
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -19,11 +23,27 @@ const Kish = ({ setKishResultForLength }) => {
     return division(kishData.length, kishData.depth).toFixed(2);
   };
 
+  const calcKishRedux = () => {
+    const res = division(kishData.length, kishData.depth).toFixed(2);
+    dispatch({
+      type: CALC_KISH,
+      payload: {
+        count: res,
+        length: kishData.length,
+        depth: kishData.depth,
+      },
+    });
+  };
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setKishResult(calcKish());
+    calcKishRedux();
     setKishResultForLength(calcKish());
   };
+
+  useEffect(() => {
+    setKishData({ length: kish.length, depth: kish.depth });
+  }, []);
 
   return (
     <DivisionForm
@@ -31,7 +51,7 @@ const Kish = ({ setKishResultForLength }) => {
       title="Коэффициент использования шпуров (КИШ)"
       name="kish"
       onSubmit={handleSubmitForm}
-      result={kishResult}
+      result={kish.count}
     >
       <div className="division-label">
         <h3 className="division-text">

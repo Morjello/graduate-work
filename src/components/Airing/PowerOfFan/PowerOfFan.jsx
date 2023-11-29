@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const PowerOfFan = ({ setPowerOfFanForRes }) => {
+const PowerOfFan = ({ setPowerOfFanForRes, kyt, airingOfMinSpeedForRes }) => {
   const [powerOfFan, setPowerOfFan] = useState({
     Kyt: '',
     Qzp: '',
@@ -20,6 +20,11 @@ const PowerOfFan = ({ setPowerOfFanForRes }) => {
   const calcPowerOfFan = () => {
     return (powerOfFan.Kyt * powerOfFan.Qzp).toFixed(1) + ' (м3/мин)';
   };
+
+  useEffect(() => {
+    setPowerOfFan({ ...powerOfFan }, (powerOfFan.Kyt = kyt));
+    setPowerOfFan({ ...powerOfFan }, (powerOfFan.Qzp = airingOfMinSpeedForRes));
+  }, [airingOfMinSpeedForRes, kyt]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();

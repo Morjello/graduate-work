@@ -24,12 +24,9 @@ const FactSpendVV = ({ setFactSpendVVForRes }) => {
   const calcFactSpendVV = () => {
     return (
       (
-        factSpendVV.qvr *
-        factSpendVV.Nvr *
-        factSpendVV.qotb *
-        factSpendVV.Notb *
-        factSpendVV.qkon *
-        factSpendVV.Nkon
+        factSpendVV.qvr * factSpendVV.Nvr +
+        factSpendVV.qotb * factSpendVV.Notb +
+        factSpendVV.qkon * factSpendVV.Nkon
       ).toFixed(1) + ' (кг)'
     );
   };

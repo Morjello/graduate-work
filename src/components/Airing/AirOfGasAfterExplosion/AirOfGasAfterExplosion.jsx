@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
+const AirOfGasAfterExplosion = ({ setAirOfGasForRes, setScv, setKyt }) => {
   const [airOfGas, setAirOfGas] = useState({
     Scv: '',
     T: '',
@@ -29,13 +29,15 @@ const AirOfGasAfterExplosion = ({ setAirOfGasForRes }) => {
       (airOfGas.Qvv * airOfGas.Ivv * lengthCalc * airOfGas.Kobv) /
       (airOfGas.Scv * airOfGas.Kyt);
     const thirdCalc = secondCalc ** (1 / 3);
-    return (firstCalc * thirdCalc).toFixed(2) + '( м3/мин)';
+    return (firstCalc * thirdCalc).toFixed(2);
   };
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setAirOfGasResult(calcAirOfGas());
+    setAirOfGasResult(calcAirOfGas() + '( м3/мин)');
     setAirOfGasForRes(calcAirOfGas());
+    setScv(airOfGas.Scv);
+    setKyt(airOfGas.Kyt);
   };
 
   return (

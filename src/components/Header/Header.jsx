@@ -20,11 +20,16 @@ const Header = () => {
     location.pathname === '/calc-of-bvr/koeff-of-zaryajaniya' ||
     location.pathname === '/calc-of-bvr/fact-spend-vv';
 
-  const navigationPathsOfAiring =
-    location.pathname === '/calc-of-airing' ||
-    location.pathname === '/calc-of-airing/leak-of-air' ||
-    location.pathname === '/calc-of-airing/air-for-people' ||
-    location.pathname === '/calc-of-airing/air-of-gas-after-explosion';
+  // const navigationPathsOfAiring =
+  //   location.pathname === '/calc-of-airing' ||
+  //   location.pathname === '/calc-of-airing/leak-of-air' ||
+  //   location.pathname === '/calc-of-airing/air-for-people' ||
+  //   location.pathname === '/calc-of-airing/air-of-gas-after-explosion' ||
+  //   location.pathname === '/calc-of-airing/air-of-min-speed' ||
+  //   location.pathname === '/calc-of-airing/power-of-fan' ||
+  //   location.pathname === '/calc-of-airing/depression-of-flexible-pump' ||
+  //   location.pathname === '/calc-of-airing/depression-of-hard-pump';
+
   return (
     <header className="header">
       <div className="header-nav">
@@ -44,14 +49,14 @@ const Header = () => {
         >
           Параметры буровзрывных работ
         </Link>
-        <Link
+        {/* <Link
           to="/calc-of-airing"
           className={`header-link ${
             navigationPathsOfAiring && 'header-link--active'
           }`}
         >
           Параметры вентиляции
-        </Link>
+        </Link> */}
         <Link
           to="/all-calculations"
           className={`header-link ${

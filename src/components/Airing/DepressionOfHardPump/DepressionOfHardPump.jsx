@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const DepressionOfHardPump = ({ setDepressionOfHardPumpForRes }) => {
+const DepressionOfHardPump = ({
+  setDepressionOfHardPumpForRes,
+  rtr,
+  kyt,
+  airingOfMinSpeedForRes,
+}) => {
   const [depressionOfHardPump, setDepressionOfHardPump] = useState({
     Rtr: '',
     Kyt: '',
@@ -30,6 +35,21 @@ const DepressionOfHardPump = ({ setDepressionOfHardPumpForRes }) => {
     );
   };
 
+  useEffect(() => {
+    setDepressionOfHardPump(
+      { ...depressionOfHardPump },
+      (depressionOfHardPump.Kyt = kyt)
+    );
+    setDepressionOfHardPump(
+      { ...depressionOfHardPump },
+      (depressionOfHardPump.Rtr = rtr)
+    );
+    setDepressionOfHardPump(
+      { ...depressionOfHardPump },
+      (depressionOfHardPump.Qzv = airingOfMinSpeedForRes)
+    );
+  }, [airingOfMinSpeedForRes, kyt, rtr]);
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setDepressionOfHardPumpResult(calcDepressionOfHardPump());
@@ -46,8 +66,8 @@ const DepressionOfHardPump = ({ setDepressionOfHardPumpForRes }) => {
     >
       <div className="division-label">
         <h3 className="division-text">
-          Rтр – аэродинамическое сопротивление трубопровода, H * c<sup>2</sup> /
-          м<sup>8</sup>
+          R<sub>тр</sub> – аэродинамическое сопротивление трубопровода, H * c
+          <sup>2</sup> / м<sup>8</sup>
         </h3>
         <input
           value={depressionOfHardPump.Rtr}
@@ -60,7 +80,9 @@ const DepressionOfHardPump = ({ setDepressionOfHardPumpForRes }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">kут – коэффициент утечек воздуха</h3>
+        <h3 className="division-text">
+          k<sub>ут</sub> – коэффициент утечек воздуха
+        </h3>
         <input
           value={depressionOfHardPump.Kyt}
           onChange={handleInputChange}
@@ -73,8 +95,8 @@ const DepressionOfHardPump = ({ setDepressionOfHardPumpForRes }) => {
       </div>
       <div className="division-label">
         <h3 className="division-text">
-          Qз.п. - количество воздуха по минимальной скорости движения воздуха, м
-          <sup>3</sup>/мин
+          Q<sub>зп</sub> - количество воздуха по минимальной скорости движения
+          воздуха, м<sup>3</sup>/мин
         </h3>
         <input
           value={depressionOfHardPump.Qzv}

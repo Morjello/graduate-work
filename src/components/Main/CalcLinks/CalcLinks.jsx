@@ -7,9 +7,9 @@ const CalcLinks = () => {
         <Link to="/calc-of-bvr/kish" className="main-calc-cell">
           Расчет БВР
         </Link>
-        <Link to="/calc-of-airing" className="main-calc-cell">
+        {/* <Link to="/calc-of-airing" className="main-calc-cell">
           Расчет вентиляции
-        </Link>
+        </Link> */}
         <Link to="/all-calculations" className="main-calc-cell">
           Таблица результатов
         </Link>

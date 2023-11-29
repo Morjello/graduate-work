@@ -46,16 +46,16 @@ const Navigation = () => {
         >
           Определение длины шпуров
         </Link>
-        {/* <Link
+        <Link
           className={`navigation-cell ${
-            location.pathname === '/calc-of-bvr/depth-of-spurs'
+            location.pathname === '/calc-of-bvr/average-depth-of-spurs'
               ? 'navigation-cell--active'
               : 'navigation-cell--hiden'
           }`}
-          to="/calc-of-bvr/depth-of-spurs"
+          to="/calc-of-bvr/average-depth-of-spurs"
         >
-          Определение глубины шпуров
-        </Link> */}
+          Определение средней глубины шпуров
+        </Link>
         <Link
           className={`navigation-cell ${
             location.pathname === '/calc-of-bvr/specific-vv'
@@ -125,6 +125,16 @@ const Navigation = () => {
           to="/calc-of-bvr/fact-spend-vv"
         >
           Фактический расход ВВ на заходку
+        </Link>
+        <Link
+          className={`navigation-cell ${
+            location.pathname === '/calc-of-bvr/output-of-ore'
+              ? 'navigation-cell--active'
+              : 'navigation-cell--hiden'
+          }`}
+          to="/calc-of-bvr/output-of-ore"
+        >
+          Уходка заблоя за цикл
         </Link>
       </div>
     </nav>

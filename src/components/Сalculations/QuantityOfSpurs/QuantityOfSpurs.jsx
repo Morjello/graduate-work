@@ -5,7 +5,6 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes, spr, q, kzsh }) => {
   const [quantityOfSpurs, setQuantityOfSpurs] = useState({
     q: '',
     S: '',
-    p: '',
     d: '',
     a: '',
   });
@@ -20,21 +19,24 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes, spr, q, kzsh }) => {
     setQuantityOfSpurs({ ...quantityOfSpurs, [name]: value });
   };
 
-  const calcDepthOfSpurs = ({ q, S, p, d, a }) => {
-    const res = (1, 27 * q * S) / (p * d, a);
-    return res + ' (шп)';
+  const calcDepthOfSpurs = () => {
+    const res =
+      (1, 27 * quantityOfSpurs.q * quantityOfSpurs.S) /
+      (32 * quantityOfSpurs.d * quantityOfSpurs.a);
+    return res.toFixed(0);
   };
 
   useEffect(() => {
     setQuantityOfSpurs({ ...quantityOfSpurs }, (quantityOfSpurs.S = spr));
     setQuantityOfSpurs({ ...quantityOfSpurs }, (quantityOfSpurs.q = q));
     setQuantityOfSpurs({ ...quantityOfSpurs }, (quantityOfSpurs.a = kzsh));
-  });
+  }, [spr, q, kzsh]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setQuantityOfSpursResult(calcDepthOfSpurs(quantityOfSpurs));
+    setQuantityOfSpursResult(calcDepthOfSpurs(quantityOfSpurs) + ' (шп)');
     setQuantityOfSpursRes(calcDepthOfSpurs(quantityOfSpurs));
+    console.log(quantityOfSpurs);
   };
 
   return (
@@ -75,29 +77,14 @@ const QuantityOfSpurs = ({ setQuantityOfSpursRes, spr, q, kzsh }) => {
         />
       </div>
       <div className="division-label">
-        <h3 className="division-text">
-          P - плотность ВВ в патроне, кг/м<sup>3</sup>
-        </h3>
-        <input
-          value={quantityOfSpurs.p}
-          onChange={handleInputChange}
-          type="text"
-          className="division-input"
-          id="p"
-          name="p"
-          maxLength="200"
-          required
-        />
-      </div>
-      <div className="division-label">
         <h3 className="division-text">d - диаметр шпура, м</h3>
         <input
-          value={quantityOfSpurs.m}
+          value={quantityOfSpurs.d}
           onChange={handleInputChange}
           type="text"
           className="division-input"
-          id="m"
-          name="m"
+          id="d"
+          name="d"
           maxLength="200"
           required
         />

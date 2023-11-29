@@ -30,9 +30,9 @@ const VVinSpurs = ({
     e.preventDefault();
     setVvInSpursResult(division(vvInSpurs.Q, vvInSpurs.N).toFixed(2) + ' (кг)');
     setAllSpurs({
-      vrub: ((vvInSpurs.Q / vvInSpurs.N) * 1.2).toFixed(2) + ' (кг)',
-      okont: (vvInSpurs.Q / vvInSpurs.N).toFixed(2) + ' (кг)',
-      kontur: ((vvInSpurs.Q / vvInSpurs.N) * 0.9).toFixed(2) + ' (кг)',
+      vrub: ((vvInSpurs.Q / vvInSpurs.N) * 1.2).toFixed(2),
+      okont: (vvInSpurs.Q / vvInSpurs.N).toFixed(2),
+      kontur: ((vvInSpurs.Q / vvInSpurs.N) * 0.9).toFixed(2),
     });
     setZaryadInSpurs({
       vrub: ((vvInSpurs.Q / vvInSpurs.N) * 1.2).toFixed(2) + ' (кг)',

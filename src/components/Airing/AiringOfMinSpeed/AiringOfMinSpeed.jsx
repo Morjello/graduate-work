@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DivisionForm from '../../DivisionForm/DivisionForm';
 import '../../DivisionForm/DivisionForm.sass';
 
-const AiringOfMinSpeed = ({ setAiringOfMinSpeedForRes }) => {
+const AiringOfMinSpeed = ({ setAiringOfMinSpeedForRes, scv }) => {
   const [airingOfMinSpeed, setAiringOfMinSpeed] = useState({
     Vmin: '',
     Scv: '',
@@ -18,15 +18,16 @@ const AiringOfMinSpeed = ({ setAiringOfMinSpeedForRes }) => {
   };
 
   const calcAiringOfMinSpeed = () => {
-    return (
-      (60 * airingOfMinSpeed.Vmin * airingOfMinSpeed.Scv).toFixed(1) +
-      ' (м3/мин)'
-    );
+    return (60 * airingOfMinSpeed.Vmin * airingOfMinSpeed.Scv).toFixed(1);
   };
+
+  useEffect(() => {
+    setAiringOfMinSpeed({ ...airingOfMinSpeed }, (airingOfMinSpeed.Scv = scv));
+  }, [scv]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    setAiringOfMinSpeedResult(calcAiringOfMinSpeed());
+    setAiringOfMinSpeedResult(calcAiringOfMinSpeed() + ' (м3/мин)');
     setAiringOfMinSpeedForRes(calcAiringOfMinSpeed());
   };
 
